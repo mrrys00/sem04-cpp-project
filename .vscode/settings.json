@@ -1,0 +1,13 @@
+{
+    "makefile.extensionOutputFolder": "./.vscode",
+    "files.associations": {
+        "exampleappprefs.h": "c",
+        "gtk.h": "c",
+        "gtkaccellabel.h": "c",
+        "string.h": "c",
+        "gdkkeysyms.h": "c",
+        "ostream": "cpp",
+        "iosfwd": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "Enabled"
+}
