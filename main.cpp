@@ -1,6 +1,8 @@
 #include <iostream>
 #include <time.h>
+#include <unistd.h>
 #include <ncurses.h>
+#include <cstdio>
 
 using namespace std;
 
@@ -133,9 +135,23 @@ private:
     int score1, score2;
     char up1, down1, up2, down2;
     bool quit;
-    cBall * ball;
+    cBall *ball;
     cPaddle *player1;
     cPaddle *player2;
+
+    int kbhit(void)
+    {
+        int ch = getch();
+
+        if (ch != ERR)
+        {
+            ungetch(ch);
+            return 1;
+        }
+
+        return 0;
+    }
+
 public:
     cGameManager(int w, int h)
     {
@@ -156,12 +172,15 @@ public:
     {
         // save scores!!!
         delete ball, player1, player2;
+        endwin();
     }
 
-    void ScoreUp(cPaddle *player) 
+    void ScoreUp(cPaddle *player)
     {
-        if (player == player1) score1++;
-        else if (player == player2) score2++;
+        if (player == player1)
+            score1++;
+        else if (player == player2)
+            score2++;
 
         ball->Reset();
         player1->Reset();
@@ -188,48 +207,141 @@ public:
                 int player1y = player1->getY();
                 int player2y = player2->getY();
 
-                if ( j == 0 )
-                    cout << "#";
-                
-                if // 6:00
-
-                if ( j == width -1 )
+                if (j == 0)
                     cout << "#";
 
+                if (ballx == j && bally == i)
+                    cout << "O";
+                else if (player1x == j && player1y == i)
+                    cout << "#";
+                else if (player2x == j && player2y == i)
+                    cout << "#";
 
+                else if (player1x == j && player1y + 1 == i)
+                    cout << "#";
+                else if (player1x == j && player1y + 2 == i)
+                    cout << "#";
+                else if (player1x == j && player1y + 3 == i)
+                    cout << "#";
+
+                else if (player2x == j && player2y + 1 == i)
+                    cout << "#";
+                else if (player2x == j && player2y + 2 == i)
+                    cout << "#";
+                else if (player2x == j && player2y + 3 == i)
+                    cout << "#";
+
+                else
+                    cout << " ";
+
+                if (j == width - 1)
+                    cout << "#";
             }
+            cout << endl;
         }
 
         for (int i = 0; i < width + 2; i++)
             cout << "#";
         cout << endl;
+        cout << "Score 1:" << score1 << "Score 2:" << score2 << endl;
+    }
+    void Input()
+    {
+        ball->Move();
 
+        int ballx = ball->getX();
+        int bally = ball->getY();
+        int player1x = player1->getX();
+        int player2x = player2->getX();
+        int player1y = player1->getY();
+        int player2y = player2->getY();
+
+        int c;
+        while ((c = getch()) != ERR)
+        {
+            char current = (char)c;
+            cout << "c " << c << endl;
+            // cin >> current;
+            cout << "current " << current << endl;
+            if (current == up1)
+                if (player1y > 0)
+                    player1->moveUp();
+            if (current == up2)
+                if (player2y > 0)
+                    player2->moveUp();
+            if (current == down1)
+                if (player1y + 4 < height)
+                    player1->moveDown();
+            if (current == down2)
+                if (player1y + 4 < height)
+                    player2->moveDown();
+
+            if (ball->getDirection() == STOP)
+                ball->randomDirection();
+
+            if (current == 'q')
+                quit = true;
+
+            break;
+        }
+        cout << "c " << c << endl;
+    }
+
+    void Logic()
+    {
+        int ballx = ball->getX();
+        int bally = ball->getY();
+        int player1x = player1->getX();
+        int player2x = player2->getX();
+        int player1y = player1->getY();
+        int player2y = player2->getY();
+
+        for (int i = 0; i < 4; i++)
+            if (ballx == player1x + 1)
+                if (bally == player1y + i)
+                    ball->changeDirection((eDir)((rand() % 3) + 4));
+
+        for (int i = 0; i < 4; i++)
+            if (ballx == player2x - 1)
+                if (bally == player2y + i)
+                    ball->changeDirection((eDir)((rand() % 3) + 1));
+
+        if (bally == height - 1)
+            ball->changeDirection(ball->getDirection() == DOWNRIGHT ? UPRIGHT : UPLEFT);
+
+        if (bally == 0)
+            ball->changeDirection(ball->getDirection() == UPRIGHT ? DOWNRIGHT : DOWNLEFT);
+
+        if (ballx == width - 1)
+            ScoreUp(player1);
+        if (ballx == 0)
+            ScoreUp(player2);
+    }
+
+    void Run()
+    {
+        while (!quit)
+        {
+            Draw();
+            Input();
+            Logic();
+            usleep(500000);
+        }
     }
 };
 
 int main()
 {
-    cGameManager c(40, 20);
-    c.Draw();
+    initscr();
 
-    // cPaddle p1(0, 0);
-    // cPaddle p2(10, 0);
-    // cout << p1 << endl;
-    // cout << p2 << endl;
-    // p1.moveUp();
-    // p2.moveDown();
-    // cout << p1 << endl;
-    // cout << p2 << endl;
+    cbreak();
+    noecho();
+    nodelay(stdscr, TRUE);
 
-    // cBall c(0, 0);
-    // cout << c << endl;
-    // c.randomDirection();
-    // cout << c << endl;
-    // c.Move();
-    // cout << c << endl;
-    // c.randomDirection();
-    // c.Move();
-    // cout << c << endl;
+    // scrollok(stdscr, TRUE);
+
+    cGameManager c(50, 20);
+    c.Run();
 
     return 0;
 }
