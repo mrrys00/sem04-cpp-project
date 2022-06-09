@@ -1,5 +1,5 @@
-make --dry-run --keep-going --print-directory
+make --dry-run --always-make --keep-going --print-directory
 make: Entering directory '/home/mrrys00/Studia/4.Semestr/Cpp/sem04-cpp-project'
-g++ -Wall -g -o main main.cpp -lncurses
+g++ -std=c++17 -o "pong" "pong".cpp -I/usr/local/SFML/include -L/usr/local/SFML/lib -lsfml-graphics -lsfml-window -lsfml-system -lfreetype
 make: Leaving directory '/home/mrrys00/Studia/4.Semestr/Cpp/sem04-cpp-project'
  

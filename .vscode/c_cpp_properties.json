@@ -11,6 +11,7 @@
             "name": "include paths",
             "intelliSenseMode": "g++-8",
             "includePath": [
+                "${myDefaultIncludePath}",
                 "/usr/include/gtk-3.0",
                 "/usr/include/at-spi2-atk/2.0",
                 "/usr/include/at-spi-2.0",
@@ -31,7 +32,10 @@
                 "/usr/include/gdk-pixbuf-2.0",
                 "/usr/include/libmount",
                 "/usr/include/blkid",
-                "/usr/include/glib-2.0"
+                "/usr/include/glib-2.0",
+                "/usr/local/SFML/",
+                "/usr/local/SFML/include",
+                "/usr/local/SFML/lib"
             ],
             "compilerPath": "/usr/bin/gcc",
             "cStandard": "c11",
