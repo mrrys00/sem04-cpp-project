@@ -1,6 +1,6 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include "paddle.hpp"
+#include "Game/game.hpp"
  
 int main() {
     sf::RenderWindow window;
@@ -19,7 +19,7 @@ int main() {
     paddle2.setPos({ 850, 200 });
  
     //Ball Object:
-    Ball ball({ 20, 20 });
+    Ball ball(10);
     ball.setPos({ 400, 200 });
  
     while(true)
@@ -69,9 +69,10 @@ int main() {
  
         static bool goingLeft = true;
         static bool goingRight = false;
- 
+
+        // piłkę będzie trzeba przekazywać jako wskaźnik
         if (goingLeft == true && paddle1.isCollidingWith(ball) == false) {
-            ball.move({ -moveSpeed, moveSpeed });
+            ball.move({ -moveSpeed / 2, moveSpeed / 4 });
         }
         else if (goingLeft == true && paddle1.isCollidingWith(ball) == true) {
             goingRight = true;
@@ -79,7 +80,7 @@ int main() {
         }
  
         if (goingRight == true && paddle2.isCollidingWith(ball) == false) {
-            ball.move({ moveSpeed, -moveSpeed });
+            ball.move({ moveSpeed / 2, -moveSpeed / 4 });
         }
         else if (goingRight == true && paddle2.isCollidingWith(ball) == true) {
             goingRight = false;
