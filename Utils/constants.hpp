@@ -1,55 +1,74 @@
 #include <iostream>
+#include <SFML/Graphics.hpp>
+
+static sf::Vector2f dirleft = {-1.0, 0.0};
+static sf::Vector2f dirright = {1.0, 0.0};
+static sf::Vector2f dirUpLeft = {-1.0 / sqrt(2), -1.0 / sqrt(2)};
+static sf::Vector2f dirUpRight = {1.0 / sqrt(2), -1.0 / sqrt(2)};
+static sf::Vector2f dirDownLeft = {-1.0 / sqrt(2), 1.0 / sqrt(2)};
+static sf::Vector2f dirDownRight = {1.0 / sqrt(2), 1.0 / sqrt(2)};
+static sf::Vector2f directions[] = {dirleft, dirright, dirUpLeft, dirUpRight, dirDownLeft, dirDownRight};
 
 class Constants
 {
 private:
     int windowWidth = 1280, windowHeight = 720;
     float ballRadius = 5;
-    int ballStartX, ballStartY;
+    float ballStartX, ballStartY;
     float ballSpeed = 0.12;
-    int paddleWidth = 5, paddleHeight;
-    int paddle1StartX, paddle1StartY, paddle2StartX, paddle2StartY;
+    float paddleWidth = 5, paddleHeight;
+    float paddle1StartX, paddle1StartY, paddle2StartX, paddle2StartY;
     float paddleSpeed = 0.1;
-    int wallSize = 10;
+    float wallSize = 10;
 
 public:
     Constants();
     ~Constants();
 
-    int getWindowWidth() { return windowWidth; }
+    float getWindowWidth() { return windowWidth; }
 
-    int getWindowHeight() { return windowHeight; }
+    float getWindowHeight() { return windowHeight; }
+
 
     float getBallRadius() { return ballRadius; }
 
-    int getBallStartX() { return ballStartX; }
+    float getBallStartX() { return ballStartX; }
 
-    int getBallStartY() { return ballStartY; }
+    float getBallStartY() { return ballStartY; }
 
     float getBallSpeed() { return ballSpeed; }
 
-    int getPaddleWidth() { return paddleWidth; }
+    inline sf::Vector2f getBallStartPosition()
+    {
+        return {ballStartX, ballStartY};
+    }
 
-    int getPaddleHeight() { return paddleHeight; }
 
-    int getPaddle1StartX() { return paddle1StartX; }
+    float getPaddleWidth() { return paddleWidth; }
 
-    int getPaddle1StartY() { return paddle1StartY; }
+    float getPaddleHeight() { return paddleHeight; }
 
-    int getPaddle2StartX() { return paddle2StartX; }
+    float getPaddle1StartX() { return paddle1StartX; }
 
-    int getPaddle2StartY() { return paddle2StartY; }
+    float getPaddle1StartY() { return paddle1StartY; }
+
+    sf::Vector2f getPaddle1StartPosition()
+    {
+        return {paddle1StartX, paddle1StartY};
+    }
+
+    float getPaddle2StartX() { return paddle2StartX; }
+
+    float getPaddle2StartY() { return paddle2StartY; }
+
+    sf::Vector2f getPaddle2StartPosition()
+    {
+        return {paddle2StartX, paddle2StartY};
+    }
 
     float getPaddleSpeed() { return paddleSpeed; }
 
-    int getWallSize() { return wallSize; }
-    
-    sf::Vector2f dirleft = {-1.0, 0.0};
-    sf::Vector2f dirright = {1.0, 0.0};
-    sf::Vector2f dirUpLeft = {-1.0 / sqrt(2), -1.0 / sqrt(2)};
-    sf::Vector2f dirUpRight = {1.0 / sqrt(2), -1.0 / sqrt(2)};
-    sf::Vector2f dirDownLeft = {-1.0 / sqrt(2), 1.0 / sqrt(2)};
-    sf::Vector2f dirDownRight = {1.0 / sqrt(2), 1.0 / sqrt(2)};
+    float getWallSize() { return wallSize; }
 };
 
 Constants::Constants()

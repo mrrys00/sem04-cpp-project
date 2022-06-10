@@ -1,12 +1,37 @@
 #include <SFML/Graphics.hpp>
 #include <math.h>
+#include "../Utils/constants.hpp"
 
 class Ball
 {
 public:
-    Ball(float r)
+    Ball(float r, float ballSpee, sf::Vector2f pos)
     {
         ball.setRadius(r);
+        ballSpeed = ballSpee;
+        hitsCounter = 0;
+        ball.setPosition(pos);
+    }
+
+    sf::Vector2f getDirection()
+    {
+        return direction;
+    }
+
+    void setDirection(sf::Vector2f newDirection)
+    {
+        direction = newDirection;
+    }
+
+    void setRadnomDirection()
+    {
+        direction = directions[rand() % (sizeof(directions)/sizeof(*directions))];
+    }
+
+    void incrementHitsCounter()
+    {
+        // 
+        hitsCounter++;
     }
 
     void drawTo(sf::RenderWindow &window)
@@ -14,9 +39,9 @@ public:
         window.draw(ball);
     }
 
-    void move(float ballSpeed)
+    void move()
     {
-        ball.move({ballSpeed * direction.x, ballSpeed * direction.y});
+        ball.move({ballSpeed * direction.x * sqrt((float)hitsCounter), ballSpeed * direction.y * sqrt((float)hitsCounter)});
     }
 
     sf::FloatRect getGlobalBounds()
@@ -32,4 +57,6 @@ public:
 private:
     sf::CircleShape ball;
     sf::Vector2f direction;
+    float ballSpeed;
+    int hitsCounter;
 };

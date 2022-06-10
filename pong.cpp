@@ -1,16 +1,15 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 #include "Game/game.hpp"
  
 int main() {
-    sf::RenderWindow window;
+    
  
-    sf::Vector2i centerWindow((sf::VideoMode::getDesktopMode().width / 2) - 445, (sf::VideoMode::getDesktopMode().height / 2) - 480);
  
-    window.create(sf::VideoMode(1280, 720), "Pong", sf::Style::Titlebar | sf::Style::Close);
-    window.setPosition(centerWindow);
  
-    window.setKeyRepeatEnabled(true);
  
     //Paddle Objects:
     Paddle paddle1({ 10, 100 });
@@ -19,7 +18,6 @@ int main() {
     paddle2.setPos({ 850, 200 });
  
     //Ball Object:
-    Ball ball(10);
     ball.setPos({ 400, 200 });
  
     while(true)
@@ -71,22 +69,22 @@ int main() {
         static bool goingRight = false;
 
         // piłkę będzie trzeba przekazywać jako wskaźnik
-        if (goingLeft == true && paddle1.isCollidingWith(ball) == false) {
+        if (goingLeft == true && paddle1.isCollidingWith(&ball) == false) {
             ball.move({ -moveSpeed / 2, moveSpeed / 4 });
         }
-        else if (goingLeft == true && paddle1.isCollidingWith(ball) == true) {
+        else if (goingLeft == true && paddle1.isCollidingWith(&ball) == true) {
             goingRight = true;
             goingLeft = false;
         }
  
-        if (goingRight == true && paddle2.isCollidingWith(ball) == false) {
+        if (goingRight == true && paddle2.isCollidingWith(&ball) == false) {
             ball.move({ moveSpeed / 2, -moveSpeed / 4 });
         }
-        else if (goingRight == true && paddle2.isCollidingWith(ball) == true) {
+        else if (goingRight == true && paddle2.isCollidingWith(&ball) == true) {
             goingRight = false;
             goingLeft = true;
         }
- 
+
         window.clear();
         paddle1.drawTo(window);
         paddle2.drawTo(window);
