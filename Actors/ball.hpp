@@ -5,54 +5,23 @@
 class Ball
 {
 public:
-    Ball(float r, float ballSpee, sf::Vector2f pos)
-    {
-        ball.setRadius(r);
-        ballSpeed = ballSpee;
-        hitsCounter = 0;
-        ball.setPosition(pos);
-    }
+    Ball(float r, float ballSpee, sf::Vector2f pos);
 
-    sf::Vector2f getDirection()
-    {
-        return direction;
-    }
+    sf::Vector2f getDirection();
 
-    void setDirection(sf::Vector2f newDirection)
-    {
-        direction = newDirection;
-    }
+    void setDirection(sf::Vector2f newDirection);
 
-    void setRadnomDirection()
-    {
-        direction = directions[rand() % (sizeof(directions)/sizeof(*directions))];
-    }
+    void setRadnomDirection();
 
-    void incrementHitsCounter()
-    {
-        // 
-        hitsCounter++;
-    }
+    void incrementHitsCounter();
 
-    void drawTo(sf::RenderWindow &window)
-    {
-        window.draw(ball);
-    }
+    void drawTo(sf::RenderWindow &window);
 
-    void move()
-    {
-        ball.move({ballSpeed * direction.x * sqrt((float)hitsCounter), ballSpeed * direction.y * sqrt((float)hitsCounter)});
-    }
+    void move();
 
-    sf::FloatRect getGlobalBounds()
-    {
-        return ball.getGlobalBounds();
-    }
+    sf::FloatRect getGlobalBounds();
 
-    void setPos(sf::Vector2f newPos)
-    {
-        ball.setPosition(newPos);
-    }
+    void setPos(sf::Vector2f newPos);
 
 private:
     sf::CircleShape ball;
@@ -60,3 +29,52 @@ private:
     float ballSpeed;
     int hitsCounter;
 };
+
+Ball::Ball(float r, float ballSpee, sf::Vector2f pos)
+{
+    ball.setRadius(r);
+    ballSpeed = ballSpee;
+    hitsCounter = 0;
+    ball.setPosition(pos);
+}
+
+sf::Vector2f Ball::getDirection()
+{
+    return direction;
+}
+
+void Ball::setDirection(sf::Vector2f newDirection)
+{
+    direction = newDirection;
+}
+
+void Ball::setRadnomDirection()
+{
+    direction = directions[rand() % (sizeof(directions) / sizeof(*directions))];
+}
+
+void Ball::incrementHitsCounter()
+{
+    // pts counter
+    hitsCounter++;
+}
+
+void Ball::drawTo(sf::RenderWindow &window)
+{
+    window.draw(ball);
+}
+
+void Ball::move()
+{
+    ball.move({ballSpeed * direction.x * sqrt((float)hitsCounter), ballSpeed * direction.y * sqrt((float)hitsCounter)});
+}
+
+sf::FloatRect Ball::getGlobalBounds()
+{
+    return ball.getGlobalBounds();
+}
+
+void Ball::setPos(sf::Vector2f newPos)
+{
+    ball.setPosition(newPos);
+}

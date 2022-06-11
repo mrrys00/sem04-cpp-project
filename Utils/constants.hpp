@@ -13,13 +13,22 @@ class Constants
 {
 private:
     int windowWidth = 1280, windowHeight = 720;
+    
     float ballRadius = 5;
     float ballStartX, ballStartY;
     float ballSpeed = 0.12;
+    
     float paddleWidth = 5, paddleHeight;
     float paddle1StartX, paddle1StartY, paddle2StartX, paddle2StartY;
     float paddleSpeed = 0.1;
+    
     float wallSize = 10;
+    
+    float wallTopX = 0;
+    float wallTopY = 0;
+
+    float wallBotX = 0;
+    float wallBotY = (float) windowHeight;
 
 public:
     Constants();
@@ -48,27 +57,28 @@ public:
 
     float getPaddleHeight() { return paddleHeight; }
 
+    sf::Vector2f getPaddleSize() { return {paddleWidth, paddleHeight}; }
+
     float getPaddle1StartX() { return paddle1StartX; }
 
     float getPaddle1StartY() { return paddle1StartY; }
 
-    sf::Vector2f getPaddle1StartPosition()
-    {
-        return {paddle1StartX, paddle1StartY};
-    }
+    sf::Vector2f getPaddle1StartPosition() { return {paddle1StartX, paddle1StartY}; }
 
     float getPaddle2StartX() { return paddle2StartX; }
 
     float getPaddle2StartY() { return paddle2StartY; }
 
-    sf::Vector2f getPaddle2StartPosition()
-    {
-        return {paddle2StartX, paddle2StartY};
-    }
+    sf::Vector2f getPaddle2StartPosition() { return {paddle2StartX, paddle2StartY}; }
 
     float getPaddleSpeed() { return paddleSpeed; }
 
+
     float getWallSize() { return wallSize; }
+
+    sf::Vector2f getWallTopPosition() { return {wallTopX, wallTopY}; }
+
+    sf::Vector2f getWallBotPosition() { return {wallBotX, wallBotY}; }
 };
 
 Constants::Constants()

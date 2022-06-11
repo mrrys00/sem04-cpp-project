@@ -4,11 +4,7 @@
 class Paddle
 {
 public:
-    Paddle(sf::Vector2f size, sf::Vector2f pos)
-    {
-        paddle.setSize(size);
-        paddle.setPosition(pos);
-    }
+    Paddle(sf::Vector2f size, float speed, sf::Vector2f pos);
 
     void drawTo(sf::RenderWindow &window)
     {
@@ -56,6 +52,7 @@ public:
 
 private:
     sf::RectangleShape paddle;
+    float paddleSpeed;
     sf::Vector2f dirleft = dirleft;
     sf::Vector2f dirright = dirright;
     sf::Vector2f dirUpLeft = dirUpLeft;
@@ -64,4 +61,9 @@ private:
     sf::Vector2f dirDownRight = dirDownRight;
 };
 
-#pragma once
+Paddle::Paddle(sf::Vector2f size, float speed, sf::Vector2f pos)
+{
+    paddle.setSize(size);
+    paddleSpeed = speed;
+    paddle.setPosition(pos);
+}
