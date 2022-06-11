@@ -14,7 +14,7 @@ public:
     void move(sf::Vector2f distance)
     {
         sf::Vector2f pos = paddle.getPosition();
-        if (pos.y > 0 + wallSize + distance.x || pos.y < (float) windowHeight - wallSize - distance.y)
+        if ((distance.y < 0 && pos.y >= 0 + wallSize + distance.y) || (distance.y > 0 && pos.y <= (float) windowHeight - wallSize - paddleHeight - distance.y))
             paddle.move(distance);
     }
 
@@ -22,25 +22,26 @@ public:
     {
         if (ball->getGlobalBounds().intersects(paddle.getGlobalBounds()))
         {
-            if (ball->getDirection() == dirDownLeft)
+            sf::Vector2f dir = ball->getDirection();
+            if (dir == dirDownLeft)
             {
                 ball->setDirection(dirDownRight);
             }
-            else if (ball->getDirection() == dirUpLeft)
+            else if (dir == dirUpLeft)
             {
                 ball->setDirection(dirUpRight);
             }
-            else if (ball->getDirection() == dirDownRight)
+            else if (dir == dirDownRight)
             {
-                ball->setDirection(dirDownRight);
+                ball->setDirection(dirDownLeft);
             }
-            else if (ball->getDirection() == dirUpRight)
+            else if (dir == dirUpRight)
             {
                 ball->setDirection(dirUpLeft);
             }
-            else if (ball->getDirection() == dirleft || ball->getDirection() == dirright)
+            else if (dir == dirleft || dir == dirright)
             {
-                ball->setRadnomDirection();
+                ball->setRadnomDirection(dir);
             }
             ball->incrementHitsCounter();
         }
@@ -55,11 +56,13 @@ public:
 private:
     sf::RectangleShape paddle;
     float paddleSpeed;
+    sf::Vector2f position;
 };
 
 Paddle::Paddle(sf::Vector2f size, float speed, sf::Vector2f pos)
 {
     paddle.setSize(size);
     paddleSpeed = speed;
+    position = pos;
     paddle.setPosition(pos);
 }

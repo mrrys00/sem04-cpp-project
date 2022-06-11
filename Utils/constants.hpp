@@ -7,7 +7,7 @@ inline sf::Vector2f dirUpLeft = {(float)-1.0 / sqrt(2), (float)-1.0 / sqrt(2)};
 inline sf::Vector2f dirUpRight = {(float)1.0 / sqrt(2), (float)-1.0 / sqrt(2)};
 inline sf::Vector2f dirDownLeft = {(float)-1.0 / sqrt(2), (float)1.0 / sqrt(2)};
 inline sf::Vector2f dirDownRight = {(float)1.0 / sqrt(2), (float)1.0 / sqrt(2)};
-inline sf::Vector2f directions[] = {dirleft, dirright, dirUpLeft, dirUpRight, dirDownLeft, dirDownRight};
+inline sf::Vector2f directions[] = {dirleft, dirUpLeft, dirDownLeft, dirright, dirUpRight, dirDownRight};
 
 inline int windowWidth = 1280, windowHeight = 720;
 
