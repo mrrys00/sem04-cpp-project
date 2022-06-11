@@ -12,7 +12,7 @@ public:
         wall.setSize(size);
         wall.setPosition(pos);
     }
-    
+
     virtual ~Wall() {}
 
     void drawTo(sf::RenderWindow &window)
@@ -26,7 +26,6 @@ public:
     }
 
     virtual void isCollidingWith(Ball *ball);
-
 };
 
 /// ================================================
@@ -37,50 +36,54 @@ private:
     sf::RectangleShape wall;
 
 public:
-    StandardWall(sf::Vector2f size, sf::Vector2f pos)
-    {
-        wall.setSize(size);
-        wall.setPosition(pos);
-    }
+    StandardWall(sf::Vector2f size, sf::Vector2f pos);
 
-    void drawTo(sf::RenderWindow &window)
-    {
-        window.draw(wall);
-    }
+    void drawTo(sf::RenderWindow &window);
 
-    sf::RectangleShape getWallShape()
-    {
-        return wall;
-    }
+    sf::RectangleShape getWallShape();
 
-    void isCollidingWith(Ball *ball)
-    {
-        if (ball->getGlobalBounds().intersects(wall.getGlobalBounds()))
-        {
-            if (ball->getDirection() == dirDownLeft)
-            {
-                ball->setDirection(dirUpLeft);
-            }
-            else if (ball->getDirection() == dirUpLeft)
-            {
-                ball->setDirection(dirDownLeft);
-            }
-            else if (ball->getDirection() == dirDownRight)
-            {
-                ball->setDirection(dirUpRight);
-            }
-            else if (ball->getDirection() == dirUpRight)
-            {
-                ball->setDirection(dirDownRight);
-            }
-            // else if (ball->getDirection() == dirleft || ball->getDirection() == dirright)
-            // {
-            //     ball->setRadnomDirection();
-            // }
-        }
-        return;
-    }
+    void isCollidingWith(Ball *ball);
 };
+
+StandardWall::StandardWall(sf::Vector2f size, sf::Vector2f pos)
+{
+    wall.setSize(size);
+    wall.setPosition(pos);
+}
+
+void StandardWall::drawTo(sf::RenderWindow &window)
+{
+    window.draw(wall);
+}
+
+sf::RectangleShape StandardWall::getWallShape()
+{
+    return wall;
+}
+
+void StandardWall::isCollidingWith(Ball *ball)
+{
+    if (ball->getGlobalBounds().intersects(wall.getGlobalBounds()))
+    {
+        if (ball->getDirection() == dirDownLeft)
+        {
+            ball->setDirection(dirUpLeft);
+        }
+        else if (ball->getDirection() == dirUpLeft)
+        {
+            ball->setDirection(dirDownLeft);
+        }
+        else if (ball->getDirection() == dirDownRight)
+        {
+            ball->setDirection(dirUpRight);
+        }
+        else if (ball->getDirection() == dirUpRight)
+        {
+            ball->setDirection(dirDownRight);
+        }
+    }
+    return;
+}
 
 class ScoreWall
 {
@@ -90,36 +93,50 @@ private:
     bool collisionToHandle = false;
 
 public:
-    ScoreWall(sf::Vector2f size, sf::Vector2f pos)
-    {
-        wall.setSize(size);
-        wall.setPosition(pos);
-        hits = 0;
-    }
+    ScoreWall(sf::Vector2f size, sf::Vector2f pos);
 
-    void drawTo(sf::RenderWindow &window)
-    {
-        window.draw(wall);
-    }
+    void drawTo(sf::RenderWindow &window);
 
-    sf::RectangleShape getWallShape()
-    {
-        return wall;
-    }
+    sf::RectangleShape getWallShape();
 
-    void isCollidingWith(Ball *ball)
-    {
-        if (ball->getGlobalBounds().intersects(wall.getGlobalBounds()))
-        {
-            hits++;
-            collisionToHandle = true;
-        }
-        return;
-    }
+    void isCollidingWith(Ball *ball);
 
-    bool getCollisionToHandle() { return collisionToHandle; }
+    bool getCollisionToHandle();
 
-    int getHits() { return hits; }
+    int getHits();
 
-    void falseCollisionToHandle() { collisionToHandle = false; }
+    void falseCollisionToHandle();
 };
+
+ScoreWall::ScoreWall(sf::Vector2f size, sf::Vector2f pos)
+{
+    wall.setSize(size);
+    wall.setPosition(pos);
+    hits = 0;
+}
+
+void ScoreWall::drawTo(sf::RenderWindow &window)
+{
+    window.draw(wall);
+}
+
+sf::RectangleShape ScoreWall::getWallShape()
+{
+    return wall;
+}
+
+void ScoreWall::isCollidingWith(Ball *ball)
+{
+    if (ball->getGlobalBounds().intersects(wall.getGlobalBounds()))
+    {
+        hits++;
+        collisionToHandle = true;
+    }
+    return;
+}
+
+bool ScoreWall::getCollisionToHandle() { return collisionToHandle; }
+
+int ScoreWall::getHits() { return hits; }
+
+void ScoreWall::falseCollisionToHandle() { collisionToHandle = false; }
