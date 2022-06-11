@@ -5,8 +5,9 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
+ 
 
-# Make data base, printed on Fri Jun 10 08:50:21 2022
+# Make data base, printed on Sat Jun 11 19:26:16 2022
 
 # Variables
 
@@ -279,7 +280,6 @@ COLORTERM = truecolor
 # environment
 XDG_SESSION_CLASS = user
 # environment
- 
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
 HOME = /home/mrrys00
@@ -344,9 +344,9 @@ GDMSESSION = gnome-xorg
 
 # Directories
 
-# . (device 41, inode 10742748): 15 files, no impossibilities.
+# . (device 41, inode 10742748): 17 files, no impossibilities.
 
-# 15 files, no impossibilities in 1 directories.
+# 17 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -357,7 +357,7 @@ GDMSESSION = gnome-xorg
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-09 17:21:25.967368749
+#  Last modified 2022-06-11 19:25:18.449868771
 #  File has been updated.
 #  Successfully updated.
 
@@ -393,7 +393,7 @@ all:
 # | := 
 # variable set hash-table stats:
 # Load=8/32=25%, Rehash=0, Collisions=1/11=9%
-#  recipe to execute (from 'Makefile', line 11):
+#  recipe to execute (from 'Makefile', line 12):
 	make build
 	make run
 
@@ -402,7 +402,7 @@ run:
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 8):
+#  recipe to execute (from 'Makefile', line 9):
 	./$(APP)
 
 build:
@@ -411,6 +411,7 @@ build:
 #  File does not exist.
 #  File has not been updated.
 #  recipe to execute (from 'Makefile', line 5):
+	export LD_LIBRARY_PATH=/usr/local/SFML/lib
 	g++ -std=c++17 -o $(APP) $(APP).cpp -I/usr/local/SFML/include -L/usr/local/SFML/lib -lsfml-graphics -lsfml-window -lsfml-system -lfreetype
 
 build3:
@@ -418,7 +419,7 @@ build3:
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 18):
+#  recipe to execute (from 'Makefile', line 19):
 	export LD_LIBRARY_PATH=/usr/local/SFML/lib
 	g++ -std=c++17 -o main2 main2.cpp -I/usr/local/SFML/include -L/usr/local/SFML/lib -lsfml-graphics -lsfml-window -lsfml-system -lfreetype
 
@@ -438,7 +439,7 @@ build2:
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 15):
+#  recipe to execute (from 'Makefile', line 16):
 	g++ -Wall -g -o main main.cpp -lncurses
 
 # files hash-table stats:
@@ -449,12 +450,12 @@ build2:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 25 / storage = 198 B / avg = 7 B
-# current buf: size = 8162 B / used = 198 B / count = 25 / avg = 7 B
+# strcache buffers: 1 (0) / strings = 27 / storage = 209 B / avg = 7 B
+# current buf: size = 8162 B / used = 209 B / count = 27 / avg = 7 B
 
-# strcache performance: lookups = 42 / hit rate = 40%
+# strcache performance: lookups = 44 / hit rate = 38%
 # hash-table stats:
-# Load=25/8192=0%, Rehash=0, Collisions=0/42=0%
-# Finished Make data base on Fri Jun 10 08:50:21 2022
+# Load=27/8192=0%, Rehash=0, Collisions=0/44=0%
+# Finished Make data base on Sat Jun 11 19:26:16 2022
 
  

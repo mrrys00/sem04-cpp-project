@@ -12,6 +12,8 @@ public:
         wall.setSize(size);
         wall.setPosition(pos);
     }
+    
+    virtual ~Wall() {}
 
     void drawTo(sf::RenderWindow &window)
     {
@@ -29,16 +31,26 @@ public:
 
 /// ================================================
 
-class StandardWall : public Wall
+class StandardWall
 {
-// private:
-//     sf::RectangleShape wall;
+private:
+    sf::RectangleShape wall;
 
 public:
     StandardWall(sf::Vector2f size, sf::Vector2f pos)
     {
         wall.setSize(size);
         wall.setPosition(pos);
+    }
+
+    void drawTo(sf::RenderWindow &window)
+    {
+        window.draw(wall);
+    }
+
+    sf::RectangleShape getWallShape()
+    {
+        return wall;
     }
 
     void isCollidingWith(Ball *ball)
@@ -59,21 +71,21 @@ public:
             }
             else if (ball->getDirection() == dirUpRight)
             {
-                ball->setDirection(dirUpLeft);
+                ball->setDirection(dirDownRight);
             }
-            else if (ball->getDirection() == dirleft || ball->getDirection() == dirright)
-            {
-                ball->setRadnomDirection();
-            }
+            // else if (ball->getDirection() == dirleft || ball->getDirection() == dirright)
+            // {
+            //     ball->setRadnomDirection();
+            // }
         }
         return;
     }
 };
 
-class ScoreWall : public Wall
+class ScoreWall
 {
 private:
-    // sf::RectangleShape wall;
+    sf::RectangleShape wall;
     int hits;
     bool collisionToHandle = false;
 
@@ -82,6 +94,17 @@ public:
     {
         wall.setSize(size);
         wall.setPosition(pos);
+        hits = 0;
+    }
+
+    void drawTo(sf::RenderWindow &window)
+    {
+        window.draw(wall);
+    }
+
+    sf::RectangleShape getWallShape()
+    {
+        return wall;
     }
 
     void isCollidingWith(Ball *ball)
@@ -95,6 +118,8 @@ public:
     }
 
     bool getCollisionToHandle() { return collisionToHandle; }
+
+    int getHits() { return hits; }
 
     void falseCollisionToHandle() { collisionToHandle = false; }
 };

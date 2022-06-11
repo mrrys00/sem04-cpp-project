@@ -2,6 +2,7 @@
 APP = "pong"
 
 build:
+	export LD_LIBRARY_PATH=/usr/local/SFML/lib
 	g++ -std=c++17 -o $(APP) $(APP).cpp -I/usr/local/SFML/include -L/usr/local/SFML/lib -lsfml-graphics -lsfml-window -lsfml-system -lfreetype
 
 run:

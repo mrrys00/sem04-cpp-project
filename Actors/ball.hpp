@@ -15,6 +15,8 @@ public:
 
     void incrementHitsCounter();
 
+    void zeroHitsCounter();
+
     void drawTo(sf::RenderWindow &window);
 
     void move();
@@ -34,8 +36,9 @@ Ball::Ball(float r, float ballSpee, sf::Vector2f pos)
 {
     ball.setRadius(r);
     ballSpeed = ballSpee;
-    hitsCounter = 0;
+    hitsCounter = 1;
     ball.setPosition(pos);
+    direction = directions[rand() % (sizeof(directions) / sizeof(*directions))];
 }
 
 sf::Vector2f Ball::getDirection()
@@ -59,6 +62,11 @@ void Ball::incrementHitsCounter()
     hitsCounter++;
 }
 
+void Ball::zeroHitsCounter()
+{
+    hitsCounter = 1;
+}
+
 void Ball::drawTo(sf::RenderWindow &window)
 {
     window.draw(ball);
@@ -66,7 +74,7 @@ void Ball::drawTo(sf::RenderWindow &window)
 
 void Ball::move()
 {
-    ball.move({ballSpeed * direction.x * sqrt((float)hitsCounter), ballSpeed * direction.y * sqrt((float)hitsCounter)});
+    ball.move({ballSpeed * direction.x * (sqrt((float)hitsCounter) / 3), ballSpeed * direction.y * (sqrt((float)hitsCounter) / 3)});
 }
 
 sf::FloatRect Ball::getGlobalBounds()

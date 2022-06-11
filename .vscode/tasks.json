@@ -6,11 +6,17 @@
             "command": "/usr/bin/g++",
             "args": [
                 "-fdiagnostics-color=always",
+                "-std=c++17",
                 "-g",
                 "${file}",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}",
-                "-lncurses"
+                "-I/usr/local/SFML/include", 
+                "-L/usr/local/SFML/lib", 
+                "-lsfml-graphics", 
+                "-lsfml-window", 
+                "-lsfml-system", 
+                "-lfreetype"
             ],
             "options": {
                 "cwd": "${fileDirname}"

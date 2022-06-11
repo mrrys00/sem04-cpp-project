@@ -13,7 +13,9 @@ public:
 
     void move(sf::Vector2f distance)
     {
-        paddle.move(distance);
+        sf::Vector2f pos = paddle.getPosition();
+        if (pos.y > 0 + wallSize + distance.x || pos.y < (float) windowHeight - wallSize - distance.y)
+            paddle.move(distance);
     }
 
     void isCollidingWith(Ball *ball)
@@ -53,12 +55,6 @@ public:
 private:
     sf::RectangleShape paddle;
     float paddleSpeed;
-    sf::Vector2f dirleft = dirleft;
-    sf::Vector2f dirright = dirright;
-    sf::Vector2f dirUpLeft = dirUpLeft;
-    sf::Vector2f dirUpRight = dirUpRight;
-    sf::Vector2f dirDownLeft = dirDownLeft;
-    sf::Vector2f dirDownRight = dirDownRight;
 };
 
 Paddle::Paddle(sf::Vector2f size, float speed, sf::Vector2f pos)
