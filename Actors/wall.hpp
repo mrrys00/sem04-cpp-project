@@ -67,6 +67,8 @@ public:
     int getHits();
 
     void falseCollisionToHandle();
+
+    void zeroPoints();
 };
 
 #endif

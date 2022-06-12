@@ -20,6 +20,8 @@ public:
     void setScore();
 
     void drawTo(sf::RenderWindow &window);
+
+    void setWinner();
 };
 
 #endif

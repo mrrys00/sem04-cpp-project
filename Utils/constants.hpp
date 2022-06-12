@@ -15,7 +15,7 @@ inline float fWindowWidth = 1280, fWindowHeight = 720;
 inline float ballRadius = 5;
 inline float ballStartX = windowWidth / 2 - ballRadius / 2;
 inline float ballStartY = windowHeight / 2 - ballRadius / 2;
-inline float ballSpeed = 0.12;
+inline float ballSpeed = 0.4;
 
 inline float wallSize = 10;
 inline float paddleWidth = 5;
@@ -24,7 +24,7 @@ inline float paddle1StartX = 0 + wallSize + windowWidth / 100;
 inline float paddle1StartY = windowHeight / 2 - paddleHeight / 2;
 inline float paddle2StartX = windowWidth - (wallSize + windowWidth / 100);
 inline float paddle2StartY = windowHeight / 2 - paddleHeight / 2;
-inline float paddleSpeed = 0.15;
+inline float paddleSpeed = 0.35;
 
 inline float wallTopX = 0;
 inline float wallTopY = 0;
@@ -40,5 +40,6 @@ inline float wallRigY = 0;
 
 inline float scoreWidth = 50;
 inline float scoreHeight = 50;
+inline int winScore = 10;
 inline sf::Vector2f score1Pos = {(1 * fWindowWidth / 4) - (scoreWidth / 2), fWindowHeight / 4 - scoreHeight / 2};
 inline sf::Vector2f score2Pos = {(3 * fWindowWidth / 4) - (scoreWidth / 2), fWindowHeight / 4 - scoreHeight / 2};

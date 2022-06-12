@@ -73,3 +73,5 @@ bool ScoreWall::getCollisionToHandle() { return collisionToHandle; }
 int ScoreWall::getHits() { return hits; }
 
 void ScoreWall::falseCollisionToHandle() { collisionToHandle = false; }
+
+void ScoreWall::zeroPoints() { hits = 0; }

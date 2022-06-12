@@ -56,22 +56,23 @@ void Game::draw()
     wallLeft.drawTo(window);
     wallRight.drawTo(window);
     score1.drawTo(window);
-    score2.drawTo(window);    
+    score2.drawTo(window);
     window.display();
 }
 
 void Game::gameInProgress()
 {
+    bool wait = true;
     draw();
-
-    while (true)
-    {
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-            break;
-    }
 
     while (window.isOpen())
     {
+        while (wait)
+        {
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::S) || sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+                wait = false;
+        }
+
         // catchEventMove();
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
         {
@@ -110,16 +111,28 @@ void Game::gameInProgress()
 
         if (wallLeft.getCollisionToHandle() || wallRight.getCollisionToHandle())
         {
-            std::cout << "score " << wallLeft.getHits() << " : " << wallRight.getHits() << std::endl;
             sleep(2);
+
+            wait = true;
+            if (wallLeft.getHits() == winScore || wallRight.getHits() == winScore)
+            {
+                score1.setWinner();
+                score2.setWinner();
+                draw();
+
+                wallLeft.zeroPoints();
+                wallRight.zeroPoints();
+
+                while (wait)
+                {
+                    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::S) || sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+                        wait = false;
+                }
+                wait = true;
+            }
+
             reset();
             draw();
-
-            while (true)
-            {
-                if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-                    break;
-            }
         }
     }
 }

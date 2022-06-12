@@ -1,15 +1,12 @@
 #include "score.hpp"
 
-Score::Score(ScoreWall *w, sf::Vector2f pos)
+Score::Score(ScoreWall *w, sf::Vector2f pos) : t("0", f, 30)
 {
     wall = w;
-    // f.loadFromFile("../Resources/lucida_console.ttf");
-    f.loadFromFile("arial.ttf");
-    t.setFont(f);
+    f.loadFromFile("Resources/roboto.ttf");
     t.setCharacterSize(30);
-    
+
     t.setFillColor(sf::Color::White);
-    t.setString("0");
     t.setPosition(pos);
 }
 
@@ -25,4 +22,12 @@ void Score::setScore()
 void Score::drawTo(sf::RenderWindow &window)
 {
     window.draw(t);
+}
+
+void Score::setWinner()
+{
+    if (wall->getHits() == winScore)
+        t.setString("WINNER");
+    else 
+        t.setString("LOSER");
 }
