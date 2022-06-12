@@ -10,7 +10,7 @@
                 "-Ofast",
                 "-g",
                 "${file}",
-                "Actors/ball.cpp", "Actors/paddle.cpp", "Actors/wall.cpp", "Game/game.cpp",
+                "Actors/ball.cpp", "Actors/paddle.cpp", "Actors/wall.cpp", "Actors/score.cpp", "Game/game.cpp",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}",
                 "-I/usr/local/SFML/include", 

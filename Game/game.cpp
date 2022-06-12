@@ -6,7 +6,9 @@ Game::Game() : ball(ballRadius, ballSpeed, {ballStartX, ballStartY}),
                wallTop({(float)windowWidth, wallSize}, {wallTopX, wallTopY}),
                wallBottom({(float)windowWidth, wallSize}, {wallBotX, wallBotY}),
                wallLeft({wallSize, (float)windowHeight}, {wallLefX, wallLefY}),
-               wallRight({wallSize, (float)windowHeight}, {wallRigX, wallRigY})
+               wallRight({wallSize, (float)windowHeight}, {wallRigX, wallRigY}),
+               score1(&wallRight, score1Pos),
+               score2(&wallLeft, score2Pos)
 {
     // window setup
     sf::Vector2i centerWindow((sf::VideoMode::getDesktopMode().width / 2) - 445, (sf::VideoMode::getDesktopMode().height / 2) - 480);
@@ -38,6 +40,9 @@ void Game::checkBallCollisions()
     wallBottom.isCollidingWith(&ball);
     wallLeft.isCollidingWith(&ball);
     wallRight.isCollidingWith(&ball);
+
+    score1.setScore();
+    score2.setScore();
 }
 
 void Game::draw()
@@ -50,6 +55,8 @@ void Game::draw()
     wallBottom.drawTo(window);
     wallLeft.drawTo(window);
     wallRight.drawTo(window);
+    score1.drawTo(window);
+    score2.drawTo(window);    
     window.display();
 }
 

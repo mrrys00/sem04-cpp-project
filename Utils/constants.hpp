@@ -10,6 +10,7 @@ inline sf::Vector2f dirDownRight = {(float)1.0 / sqrt(2), (float)1.0 / sqrt(2)};
 inline sf::Vector2f directions[] = {dirleft, dirUpLeft, dirDownLeft, dirright, dirUpRight, dirDownRight};
 
 inline int windowWidth = 1280, windowHeight = 720;
+inline float fWindowWidth = 1280, fWindowHeight = 720;
 
 inline float ballRadius = 5;
 inline float ballStartX = windowWidth / 2 - ballRadius / 2;
@@ -36,3 +37,8 @@ inline float wallLefY = 0;
 
 inline float wallRigX = (float)(windowWidth - wallSize);
 inline float wallRigY = 0;
+
+inline float scoreWidth = 50;
+inline float scoreHeight = 50;
+inline sf::Vector2f score1Pos = {(1 * fWindowWidth / 4) - (scoreWidth / 2), fWindowHeight / 4 - scoreHeight / 2};
+inline sf::Vector2f score2Pos = {(3 * fWindowWidth / 4) - (scoreWidth / 2), fWindowHeight / 4 - scoreHeight / 2};

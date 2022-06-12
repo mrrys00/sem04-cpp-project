@@ -1,7 +1,7 @@
 #include <iostream>
 #include <unistd.h>
 
-#include "../Actors/wall.hpp"
+#include "../Actors/score.hpp"
 
 #ifndef GAME_HPP
 #define GAME_HPP
@@ -14,6 +14,7 @@ private:
     Paddle player1, player2;
     StandardWall wallTop, wallBottom;
     ScoreWall wallLeft, wallRight;
+    Score score1, score2;
 
     void reset();
 
