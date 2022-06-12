@@ -32,4 +32,4 @@
 *.app
 
 # Logs
-./vscode/*.log
+.vscode/*.log
