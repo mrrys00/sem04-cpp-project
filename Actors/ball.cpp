@@ -39,6 +39,11 @@ void Ball::zeroHitsCounter()
     hitsCounter = 1;
 }
 
+int Ball::getHitsCounter()
+{
+    return hitsCounter;
+}
+
 void Ball::drawTo(sf::RenderWindow &window)
 {
     window.draw(ball);

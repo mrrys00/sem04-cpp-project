@@ -23,7 +23,7 @@ inline float paddle1StartX = 0 + wallSize + windowWidth / 100;
 inline float paddle1StartY = windowHeight / 2 - paddleHeight / 2;
 inline float paddle2StartX = windowWidth - (wallSize + windowWidth / 100);
 inline float paddle2StartY = windowHeight / 2 - paddleHeight / 2;
-inline float paddleSpeed = 0.07;
+inline float paddleSpeed = 0.15;
 
 inline float wallTopX = 0;
 inline float wallTopY = 0;

@@ -11,7 +11,7 @@ public:
 
     void drawTo(sf::RenderWindow &window);
 
-    void move(sf::Vector2f distance);
+    void move(sf::Vector2f distance, Ball ball);
 
     void isCollidingWith(Ball *ball);
 

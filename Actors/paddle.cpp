@@ -13,11 +13,11 @@ void Paddle::drawTo(sf::RenderWindow &window)
     window.draw(paddle);
 }
 
-void Paddle::move(sf::Vector2f distance)
+void Paddle::move(sf::Vector2f distance, Ball ball)
 {
     sf::Vector2f pos = paddle.getPosition();
     if ((distance.y < 0 && pos.y >= 0 + wallSize + distance.y) || (distance.y > 0 && pos.y <= (float)windowHeight - wallSize - paddleHeight - distance.y))
-        paddle.move(distance);
+        paddle.move({distance.x, distance.y * paddleSpeed * (sqrt((float)ball.getHitsCounter()) / 3)});
 }
 
 void Paddle::isCollidingWith(Ball *ball)

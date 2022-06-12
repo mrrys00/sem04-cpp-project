@@ -68,20 +68,20 @@ void Game::gameInProgress()
         // catchEventMove();
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
         {
-            player1.move({0, -1});
+            player1.move({0, -1}, ball);
         }
         else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
         {
-            player1.move({0, 1});
+            player1.move({0, 1}, ball);
         }
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
         {
-            player2.move({0, -1});
+            player2.move({0, -1}, ball);
         }
         else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
         {
-            player2.move({0, 1});
+            player2.move({0, 1}, ball);
         }
 
         sf::Event Event;
@@ -116,3 +116,5 @@ void Game::gameInProgress()
         }
     }
 }
+
+void Game::play() { gameInProgress(); }

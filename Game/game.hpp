@@ -27,7 +27,7 @@ public:
     Game();
     virtual ~Game();
 
-    void play() { gameInProgress(); }
+    void play();
 };
 
 #endif

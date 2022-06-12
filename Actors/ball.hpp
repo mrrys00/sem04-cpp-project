@@ -20,6 +20,8 @@ public:
 
     void zeroHitsCounter();
 
+    int getHitsCounter();
+
     void drawTo(sf::RenderWindow &window);
 
     void move();
