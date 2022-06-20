@@ -33,3 +33,6 @@
 
 # Logs
 .vscode/*.log
+
+# build
+build/
