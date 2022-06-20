@@ -95,12 +95,8 @@ void Game::gameInProgress()
         sf::Event Event;
         while (window.pollEvent(Event))
         {
-            switch (Event.type)
-            {
-
-            case sf::Event::Closed:
+            if (Event.type == sf::Event::Closed)
                 window.close();
-            }
         }
 
         checkBallCollisions();
