@@ -28,6 +28,11 @@ void Ball::setRadnomDirection(sf::Vector2f dir)
         direction = directions[rand() % ((sizeof(directions) / sizeof(*directions)) / 2) + 3];
 }
 
+void Ball::setRadnomStartDirection()
+{
+    direction = directions[rand() % ((sizeof(directions) / sizeof(*directions)))];
+}
+
 void Ball::incrementHitsCounter()
 {
     // pts counter

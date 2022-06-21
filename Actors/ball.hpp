@@ -16,6 +16,8 @@ public:
 
     void setRadnomDirection(sf::Vector2f dir);
 
+    void setRadnomStartDirection();
+
     void incrementHitsCounter();
 
     void zeroHitsCounter();

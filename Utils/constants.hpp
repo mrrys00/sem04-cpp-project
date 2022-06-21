@@ -15,7 +15,7 @@ inline float fWindowWidth = 1280, fWindowHeight = 720;
 inline float ballRadius = 5;
 inline float ballStartX = windowWidth / 2 - ballRadius / 2;
 inline float ballStartY = windowHeight / 2 - ballRadius / 2;
-inline float ballSpeed = 0.4;
+inline float ballSpeed = 0.3;
 
 inline float wallSize = 10;
 inline float paddleWidth = 5;

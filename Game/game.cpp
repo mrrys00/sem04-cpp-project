@@ -15,6 +15,7 @@ Game::Game() : ball(ballRadius, ballSpeed, {ballStartX, ballStartY}),
     window.create(sf::VideoMode(windowWidth, windowHeight), "Pong 50th Anniversary", sf::Style::Titlebar | sf::Style::Close);
     window.setPosition(centerWindow);
     window.setKeyRepeatEnabled(true);
+    ball.setRadnomStartDirection();
 }
 
 Game::~Game()
@@ -29,6 +30,7 @@ void Game::reset()
     player2.setPos({paddle2StartX, paddle2StartY});
     wallLeft.falseCollisionToHandle();
     wallRight.falseCollisionToHandle();
+    ball.setRadnomStartDirection();
 }
 
 void Game::checkBallCollisions()
